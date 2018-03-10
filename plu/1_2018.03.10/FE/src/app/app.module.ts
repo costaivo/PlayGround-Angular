@@ -6,13 +6,16 @@ import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import { ApiService } from './api.service';
 
+import { MatButtonModule } from '@angular/material';
+
 @NgModule({
   declarations: [
     AppComponent
   ],
   imports: [
     BrowserModule,
-    HttpModule
+    HttpModule,
+    MatButtonModule
   ],
   providers: [ApiService],
   bootstrap: [AppComponent]
