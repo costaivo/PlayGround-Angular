@@ -6,7 +6,7 @@ import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import { ApiService } from './api.service';
 
-import { MatButtonModule } from '@angular/material';
+import { MatButtonModule, MatCardModule } from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -15,7 +15,8 @@ import { MatButtonModule } from '@angular/material';
   imports: [
     BrowserModule,
     HttpModule,
-    MatButtonModule
+    MatButtonModule,
+    MatCardModule,
   ],
   providers: [ApiService],
   bootstrap: [AppComponent]
