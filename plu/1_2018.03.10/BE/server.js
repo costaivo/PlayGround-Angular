@@ -1,9 +1,19 @@
 var express = require('express');
+var cors = require('cors');
 var app = express();
 
-app.get('/', (req, res) => {
-    res.send('Hello World');
+var posts = [
+    { message: 'hello' },
+    { message: 'hi' }
+]
+
+app.use(cors());
+
+app.get('/posts', (req, res) => {
+    res.send(posts);
 })
+
+
 
 app.listen(3000);
 console.log('Server started');
