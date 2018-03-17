@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ApiService } from './api.service';
+
 
 @Component({
   selector: 'app-root',
@@ -9,11 +9,11 @@ import { ApiService } from './api.service';
 export class AppComponent {
   title = 'app';
 
-  constructor(private apiService: ApiService) {
+  constructor() {
 
   }
 
   ngOnInit() {
-    this.apiService.getMessages();
+
   }
 }

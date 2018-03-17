@@ -1,4 +1,4 @@
-npm{
+{
   "name": "blog-app",
   "version": "1.0.0",
   "description": "",
@@ -11,7 +11,7 @@ npm{
   "dependencies": {
     "body-parser": "^1.18.2",
     "cors": "^2.8.4",
-    "express": "^4.16.2",
+    "express": "^4.16.3",
     "mongoose": "^5.0.10"
   },
   "devDependencies": {
