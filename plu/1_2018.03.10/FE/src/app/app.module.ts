@@ -6,12 +6,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
 import { ApiService } from './api.service';
 import { MessagesComponent } from './messages.component';
-import {
-  MatButtonModule,
-  MatCardModule,
-  MatToolbarModule,
-  MatInputModule
-} from '@angular/material';
+import { MatComponents } from './app.imports-material';
 import { RegisterComponent } from './register.component';
 
 
@@ -26,10 +21,7 @@ const routes = [
   imports: [
     BrowserModule,
     HttpModule,
-    MatButtonModule,
-    MatCardModule,
-    MatToolbarModule,
-    MatInputModule,
+    ...MatComponents,
     BrowserAnimationsModule,
     RouterModule.forRoot(routes)
   ],
