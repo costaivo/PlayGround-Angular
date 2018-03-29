@@ -32,11 +32,17 @@ app.post('/register', (req, res) => {
 
     res.sendStatus(200);
 })
-
-mongoose.connect('mongodb://dct:paradox@ds113849.mlab.com:13849/learning-db', {}, (err) => {
-    if (!err)
+var dbConnectionString = '';
+//dbConnectionString = 'mongodb://dct:paradox@ds113849.mlab.com:13849/learning-db'
+dbConnectionString = 'mongodb://localhost:27017/learning-db'
+mongoose.connect(dbConnectionString, {}, (err) => {
+    if (!err) {
         console.log('connected to mongodb');
+        app.listen(3000);
+        console.log('Server started');
+    }
+    else {
+        console.log('Error Could not connect to server')
+    }
 });
 
-app.listen(3000);
-console.log('Server started');

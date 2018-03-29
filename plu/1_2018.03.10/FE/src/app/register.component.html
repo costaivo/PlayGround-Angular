@@ -7,12 +7,12 @@
     <mat-card-content>
         <form>
             <mat-input-container>
-                <input matInput placeholder="email" type="email">
+                <input [(ngModel)]="registerData.email" name="email" matInput placeholder="email" type="email">
             </mat-input-container>
             <mat-input-container>
-                <input matInput placeholder="password" type="password">
+                <input [(ngModel)]="registerData.password" name="password" matInput placeholder="password" type="password">
             </mat-input-container>
-            <button mat-raised-button (click)="onClick" color="primary">Register</button>
+            <button mat-raised-button (click)="post()" color="primary">Register</button>
         </form>
     </mat-card-content>
 </mat-card>

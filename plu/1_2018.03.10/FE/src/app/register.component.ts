@@ -5,8 +5,12 @@ import { Component, OnInit } from '@angular/core';
     templateUrl: 'register.component.html'
 })
 
-export class RegisterComponent implements OnInit {
-    constructor() { }
+export class RegisterComponent {
+    registerData = {}
 
-    ngOnInit() { }
+    post() {
+        console.log(this.registerData);
+    }
+
+
 }

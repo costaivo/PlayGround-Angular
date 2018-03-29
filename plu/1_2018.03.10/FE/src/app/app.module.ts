@@ -8,6 +8,7 @@ import { ApiService } from './api.service';
 import { MessagesComponent } from './messages.component';
 import { MatComponents } from './app.imports-material';
 import { RegisterComponent } from './register.component';
+import { FormsModule } from '@angular/forms';
 
 
 const routes = [
@@ -20,6 +21,7 @@ const routes = [
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     HttpModule,
     ...MatComponents,
     BrowserAnimationsModule,
