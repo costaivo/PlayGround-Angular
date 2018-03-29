@@ -29,8 +29,6 @@ app.post('/register', (req, res) => {
 
         res.sendStatus(200);
     })
-
-    res.sendStatus(200);
 })
 var dbConnectionString = '';
 //dbConnectionString = 'mongodb://dct:paradox@ds113849.mlab.com:13849/learning-db'
