@@ -20,4 +20,9 @@ export class ApiService {
 
         });
     }
+    loginUser(loginData) {
+        this.http.post(this.apiUrl + 'login', loginData).subscribe(res => {
+
+        });
+    }
 }

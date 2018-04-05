@@ -9,15 +9,19 @@ import { MessagesComponent } from './messages.component';
 import { MatComponents } from './app.imports-material';
 import { RegisterComponent } from './register.component';
 import { FormsModule } from '@angular/forms';
+import { LoginComponent } from './login.component';
 
 
 const routes = [
-  { path: 'register', component: RegisterComponent }
+  { path: 'register', component: RegisterComponent },
+  { path: 'login', component: LoginComponent }
 ];
 @NgModule({
   declarations: [
     AppComponent,
-    MessagesComponent, RegisterComponent
+    MessagesComponent,
+    RegisterComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

@@ -1,12 +1,17 @@
 import { Component, OnInit } from '@angular/core';
+import { ApiService } from './api.service';
 
 @Component({
-    selector: 'register',
-    template: `Register Component`
+    selector: 'login',
+    templateUrl: 'login.component.html'
 })
 
-export class RegisterComponent implements OnInit {
-    constructor() { }
+export class LoginComponent {
+    loginData = {}
 
-    ngOnInit() { }
+    constructor(private apiService: ApiService) { }
+
+    login() {
+        this.apiService.loginUser(this.loginData);
+    }
 }
