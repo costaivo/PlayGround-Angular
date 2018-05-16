@@ -5,6 +5,7 @@ import { RouterModule } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
 import { ApiService } from './api.service';
+import { AuthService } from './auth.service';
 import { MessagesComponent } from './messages.component';
 import { MatComponents } from './app.imports-material';
 import { RegisterComponent } from './register.component';
@@ -31,7 +32,7 @@ const routes = [
     BrowserAnimationsModule,
     RouterModule.forRoot(routes)
   ],
-  providers: [ApiService],
+  providers: [ApiService, AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

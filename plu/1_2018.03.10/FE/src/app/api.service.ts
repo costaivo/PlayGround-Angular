@@ -14,14 +14,4 @@ export class ApiService {
             this.messages = res.json();
         });
     }
-
-    sendUserRegistration(registerData) {
-        this.http.post(this.apiUrl + 'register', registerData).subscribe(res => {
-
-        });
-    }
-    loginUser(loginData) {
-        this.http.post(this.apiUrl + 'login', loginData).subscribe(res => {
-        });
-    }
 }

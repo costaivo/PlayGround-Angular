@@ -44,12 +44,12 @@ app.post('/login', async (req, res) => {
 
     // Application will wait until the above code is executed before executing the below code. 
     if (!user)
-        return res.sendStatus(401).send({ message: 'Email or Password invalid' })
+        return res.status(401).send({ message: 'Email or Password invalid' })
 
     console.log('User exists in the system');
 
     if (userData.password != user.password)
-        return res.sendStatus(401).send({ message: 'Email or Password invalid' })
+        return res.status(401).send({ message: 'Password invalid' })
 
     console.log('User Passwords match');
 
@@ -57,9 +57,9 @@ app.post('/login', async (req, res) => {
 
     var token = jwt.encode(payload, '123')
 
-    console.log(token)
 
-    res.sendStatus(200).send({ token: 'token' });
+    //to send status and response need to use res.status
+    return res.status(200).send({ token });
 })
 
 var dbConnectionString = '';
