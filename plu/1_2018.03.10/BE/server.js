@@ -3,7 +3,7 @@ var cors = require('cors');
 var bodyParser = require('body-parser');
 var app = express();
 var mongoose = require('mongoose');
-var jwt = require('jwt');
+var jwt = require('jwt-simple');
 
 var User = require('./models/user.js');
 
@@ -11,7 +11,9 @@ var posts = [
     { message: 'hello' },
     { message: 'hi' },
     { message: 'Bye' },
+    { message: 'Be Happy' },
 ]
+
 
 // Middleware
 app.use(cors());
