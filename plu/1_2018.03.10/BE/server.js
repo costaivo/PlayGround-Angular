@@ -35,15 +35,23 @@ app.post('/register', (req, res) => {
 })
 
 app.post('/login', async (req, res) => {
+    console.log('In login function')
     var userData = req.body
 
     var user = await User.findOne({ email: userData.email })
 
+    console.log(user);
+
+    // Application will wait until the above code is executed before executing the below code. 
     if (!user)
         return res.sendStatus(401).send({ message: 'Email or Password invalid' })
 
-    if (userData.pwd != user.pwd)
+    console.log('User exists in the system');
+
+    if (userData.password != user.password)
         return res.sendStatus(401).send({ message: 'Email or Password invalid' })
+
+    console.log('User Passwords match');
 
     var payload = {};
 
@@ -51,7 +59,7 @@ app.post('/login', async (req, res) => {
 
     console.log(token)
 
-    res.sendStatus(200).send({ token: token });
+    res.sendStatus(200).send({ token: 'token' });
 })
 
 var dbConnectionString = '';
