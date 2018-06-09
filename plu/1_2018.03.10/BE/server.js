@@ -49,7 +49,7 @@ app.post('/login', async (req, res) => {
     console.log('User exists in the system');
 
     if (userData.password != user.password)
-        return res.status(401).send({ message: 'Password invalid' })
+        return res.status(401).send({ message: ' Password invalid' })
 
     console.log('User Passwords match');
 
