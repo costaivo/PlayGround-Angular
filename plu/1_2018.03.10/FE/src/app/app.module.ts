@@ -11,18 +11,22 @@ import { MatComponents } from './app.imports-material';
 import { RegisterComponent } from './register.component';
 import { FormsModule } from '@angular/forms';
 import { LoginComponent } from './login.component';
+import { UsersComponent } from './users.components';
 
 
 const routes = [
   { path: 'register', component: RegisterComponent },
-  { path: 'login', component: LoginComponent }
+  { path: 'login', component: LoginComponent },
+  { path: 'users', component: UsersComponent }
 ];
 @NgModule({
   declarations: [
     AppComponent,
+    UsersComponent,
     MessagesComponent,
     RegisterComponent,
-    LoginComponent
+    LoginComponent,
+
   ],
   imports: [
     BrowserModule,
