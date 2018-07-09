@@ -12,12 +12,13 @@ import { RegisterComponent } from './register.component';
 import { FormsModule } from '@angular/forms';
 import { LoginComponent } from './login.component';
 import { UsersComponent } from './users.components';
-
+import { ProfileComponent } from './profile.component';
 
 const routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'users', component: UsersComponent }
+  { path: 'users', component: UsersComponent },
+  { path: 'profile/:id', component: ProfileComponent }
 ];
 @NgModule({
   declarations: [
@@ -26,7 +27,7 @@ const routes = [
     MessagesComponent,
     RegisterComponent,
     LoginComponent,
-
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
