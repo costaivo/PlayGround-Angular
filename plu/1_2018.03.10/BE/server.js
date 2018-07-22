@@ -34,16 +34,26 @@ app.get('/users', async (req, res) => {
 
 })
 
-app.post('/register', (req, res) => {
+app.post('/register', async (req, res) => {
     var userData = req.body;
     var user = new User(userData);
-    user.save((err, result) => {
-        if (err)
-            console.log(userData.email);
 
-        console.log('User ' + userData.email + 'registered successfully')
-        res.sendStatus(200);
-    })
+    var existingUser = await User.findOne({ email: userData.email })
+
+    if (existingUser !== null) {
+        conosle.log('User with email ' + userData.email + 'already exists in the system')
+        res.status(409).send({ message: 'User with email ' + userData.email + 'already exists in the system' })
+    }
+    else {
+        user.save((err, result) => {
+            if (err)
+                console.log(userData.email);
+
+            console.log('User ' + userData.email + 'registered successfully')
+            // Send Resource Code 201 since new record was created.
+            res.sendStatus(201);
+        })
+    }
 })
 
 app.post('/login', async (req, res) => {
