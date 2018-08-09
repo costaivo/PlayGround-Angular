@@ -21,6 +21,6 @@ export class ApiService {
         });
     }
     getProfile(id) {
-        return this.http.get(this.apiUrl + 'profile');
+        return this.http.get(this.apiUrl + 'profile/' + id);
     }
 }

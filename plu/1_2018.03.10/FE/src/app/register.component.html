@@ -12,6 +12,15 @@
             <mat-input-container>
                 <input [(ngModel)]="registerData.password" name="password" matInput placeholder="password" type="password">
             </mat-input-container>
+            <br>
+            <mat-input-container>
+                <input [(ngModel)]="registerData.name" name="name" matInput placeholder="Name" type="text">
+            </mat-input-container>
+            <br>
+            <mat-input-container style="width:100%">
+                <textarea [(ngModel)]="registerData.description" name="description" matInput placeholder="description"></textarea>
+            </mat-input-container>
+            <br>
             <button mat-raised-button (click)="post()" color="primary">Register</button>
         </form>
     </mat-card-content>
