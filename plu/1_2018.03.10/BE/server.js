@@ -1,11 +1,12 @@
-var express = require('express');
-var cors = require('cors');
-var bodyParser = require('body-parser');
-var app = express();
-var mongoose = require('mongoose');
-var jwt = require('jwt-simple');
+var express = require('express')
+var cors = require('cors')
+var bodyParser = require('body-parser')
+var app = express()
+var mongoose = require('mongoose')
+var jwt = require('jwt-simple')
+var bcrypt = require('bcrypt-nodejs')
 
-var User = require('./models/user.js');
+var User = require('./models/user.js')
 
 // Use ES6 Promise library
 mongoose.Promise = Promise
@@ -70,9 +71,9 @@ app.post('/register', async (req, res) => {
 
 app.post('/login', async (req, res) => {
     console.log('In login function')
-    var userData = req.body
+    var loginData = req.body
 
-    var user = await User.findOne({ email: userData.email })
+    var user = await User.findOne({ email: loginData.email })
 
     console.log(user);
 
@@ -82,18 +83,19 @@ app.post('/login', async (req, res) => {
 
     console.log('User exists in the system');
 
-    if (userData.password != user.password)
-        return res.status(401).send({ message: ' Password invalid' })
+    bcrypt.compare(loginData.password, user.password, (err, isMatch) => {
+        if (!isMatch)
+            return res.status(401).send({ message: ' Password invalid' })
 
-    console.log('User Passwords match');
+        var payload = {};
 
-    var payload = {};
+        var token = jwt.encode(payload, '123')
 
-    var token = jwt.encode(payload, '123')
+        console.log('User Passwords match');
 
-
-    //to send status and response need to use res.status
-    return res.status(200).send({ token });
+        //to send status and response need to use res.status
+        return res.status(200).send({ token })
+    })
 })
 
 var dbConnectionString = '';
