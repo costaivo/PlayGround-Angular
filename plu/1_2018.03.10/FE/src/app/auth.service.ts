@@ -1,10 +1,10 @@
-import { Http } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 @Injectable()
 export class AuthService {
 
-    constructor(private http: Http) { }
+    constructor(private http: HttpClient) { }
 
     apiUrl = 'http://localhost:3000/auth/';
 
@@ -15,8 +15,8 @@ export class AuthService {
         });
     }
     loginUser(loginData) {
-        this.http.post(this.apiUrl + 'login', loginData).subscribe(res => {
-            localStorage.setItem('token', res.json().token)
+        this.http.post<any>(this.apiUrl + 'login', loginData).subscribe(res => {
+            localStorage.setItem('token', res.token)
         });
     }
 }

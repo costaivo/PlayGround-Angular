@@ -14,7 +14,7 @@ export class ProfileComponent implements OnInit {
     ngOnInit() {
         var id = this.route.snapshot.params.id;
         this.apiService.getProfile(id).subscribe(data => {
-            console.log(this.profile = data.json())
+            console.log(this.profile = data)
         })
     }
 }

@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
@@ -14,6 +13,8 @@ import { LoginComponent } from './login.component'
 import { UsersComponent } from './users.components'
 import { ProfileComponent } from './profile.component'
 import { PostComponent } from './post.component'
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http'
+import { AuthInterceptorService } from './authInterceptor.service'
 
 const routes = [
   { path: '', component: PostComponent },
@@ -35,12 +36,16 @@ const routes = [
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule,
+    HttpClientModule,
     ...MatComponents,
     BrowserAnimationsModule,
     RouterModule.forRoot(routes)
   ],
-  providers: [ApiService, AuthService],
+  providers: [ApiService, AuthService, {
+    provide: HTTP_INTERCEPTORS,
+    useClass: AuthInterceptorService,
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

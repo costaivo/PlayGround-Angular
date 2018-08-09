@@ -1,4 +1,4 @@
-import { Http } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 @Injectable()
@@ -7,12 +7,12 @@ export class ApiService {
     messages = []
     users = []
 
-    constructor(private http: Http) { }
+    constructor(private http: HttpClient) { }
 
     apiUrl = 'http://localhost:3000/'
     getMessages(userId) {
-        this.http.get(this.apiUrl + 'posts/' + userId).subscribe(res => {
-            this.messages = res.json()
+        this.http.get<any>(this.apiUrl + 'posts/' + userId).subscribe(res => {
+            this.messages = res
         });
     }
     postMessage(message) {
@@ -21,11 +21,11 @@ export class ApiService {
         });
     }
     getUsers() {
-        this.http.get(this.apiUrl + 'users').subscribe(res => {
-            this.users = res.json()
+        this.http.get<any>(this.apiUrl + 'users').subscribe(res => {
+            this.users = res
         });
     }
     getProfile(id) {
-        return this.http.get(this.apiUrl + 'profile/' + id);
+        return this.http.get<any>(this.apiUrl + 'profile/' + id);
     }
 }

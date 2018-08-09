@@ -45,7 +45,7 @@ async function login(req, res) {
         if (!isMatch)
             return res.status(401).send({ message: ' Password invalid' })
 
-        var payload = {};
+        var payload = { sub: user._id };
 
         var token = jwt.encode(payload, '123')
 
