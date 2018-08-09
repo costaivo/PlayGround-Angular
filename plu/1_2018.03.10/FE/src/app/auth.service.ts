@@ -6,7 +6,7 @@ export class AuthService {
 
     constructor(private http: Http) { }
 
-    apiUrl = 'http://localhost:3000/';
+    apiUrl = 'http://localhost:3000/auth/';
 
 
     sendUserRegistration(registerData) {
