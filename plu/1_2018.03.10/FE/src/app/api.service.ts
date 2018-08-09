@@ -10,9 +10,14 @@ export class ApiService {
     constructor(private http: Http) { }
 
     apiUrl = 'http://localhost:3000/'
-    getMessages() {
-        this.http.get(this.apiUrl + 'posts').subscribe(res => {
+    getMessages(userId) {
+        this.http.get(this.apiUrl + 'posts/' + userId).subscribe(res => {
             this.messages = res.json()
+        });
+    }
+    postMessage(message) {
+        this.http.post(this.apiUrl + 'post', message).subscribe(res => {
+
         });
     }
     getUsers() {

@@ -7,14 +7,16 @@ import { AppComponent } from './app.component';
 import { ApiService } from './api.service';
 import { AuthService } from './auth.service';
 import { MessagesComponent } from './messages.component';
-import { MatComponents } from './app.imports-material';
-import { RegisterComponent } from './register.component';
-import { FormsModule } from '@angular/forms';
-import { LoginComponent } from './login.component';
-import { UsersComponent } from './users.components';
-import { ProfileComponent } from './profile.component';
+import { MatComponents } from './app.imports-material'
+import { RegisterComponent } from './register.component'
+import { FormsModule } from '@angular/forms'
+import { LoginComponent } from './login.component'
+import { UsersComponent } from './users.components'
+import { ProfileComponent } from './profile.component'
+import { PostComponent } from './post.component'
 
 const routes = [
+  { path: '', component: PostComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
   { path: 'users', component: UsersComponent },
@@ -27,7 +29,8 @@ const routes = [
     MessagesComponent,
     RegisterComponent,
     LoginComponent,
-    ProfileComponent
+    ProfileComponent,
+    PostComponent
   ],
   imports: [
     BrowserModule,

@@ -13,12 +13,6 @@ var auth = require('./auth.js')
 // Use ES6 Promise library
 mongoose.Promise = Promise
 
-var posts = [
-    { message: 'hello' },
-    { message: 'hi' },
-    { message: 'Bye' },
-    { message: 'Be Happy' },
-]
 
 
 // Middleware
@@ -26,9 +20,9 @@ app.use(cors());
 app.use(bodyParser.json());
 
 
-app.get('/posts', async (req, res) => {
+app.get('/posts/:id', async (req, res) => {
     try {
-        var posts = await Post.find({}, '-__v')
+        var posts = await Post.find({ author: req.params.id }, '-__v')
         res.send(posts)
     } catch (error) {
         console.error(error)
@@ -37,7 +31,10 @@ app.get('/posts', async (req, res) => {
 })
 
 app.post('/post', (req, res) => {
-    var post = new Post(req.body)
+    var postData = req.body
+    postData.author = '5b6c233280434056f4bdc813'
+
+    var post = new Post(postData)
 
     post.save((err, result) => {
         if (err) {
