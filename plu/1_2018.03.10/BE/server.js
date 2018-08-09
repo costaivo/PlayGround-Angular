@@ -7,6 +7,7 @@ var mongoose = require('mongoose')
 
 
 var User = require('./models/user.js')
+var Post = require('./models/Post')
 var auth = require('./auth.js')
 
 // Use ES6 Promise library
@@ -24,8 +25,28 @@ var posts = [
 app.use(cors());
 app.use(bodyParser.json());
 
-app.get('/posts', (req, res) => {
-    res.send(posts);
+
+app.get('/posts', async (req, res) => {
+    try {
+        var posts = await Post.find({}, '-__v')
+        res.send(posts)
+    } catch (error) {
+        console.error(error)
+        res.sendStatus(500)
+    }
+})
+
+app.post('/post', (req, res) => {
+    var post = new Post(req.body)
+
+    post.save((err, result) => {
+        if (err) {
+            console.error('saving post error')
+            res.status(500).send({ message: 'saving post error' })
+        }
+
+        res.sendStatus(200)
+    })
 })
 
 app.get('/users', async (req, res) => {
@@ -55,6 +76,7 @@ dbConnectionString = 'mongodb://localhost:27017/learning-db'
 mongoose.connect(dbConnectionString, {}, (err) => {
     if (!err) {
         console.log('connected to mongodb');
+
         app.use('/auth', auth)
         app.listen(3000);
         console.log('Server started');

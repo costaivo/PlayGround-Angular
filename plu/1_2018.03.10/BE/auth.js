@@ -26,6 +26,7 @@ async function register(req, res) {
         })
     }
 }
+
 async function login(req, res) {
     console.log('In login function')
     var loginData = req.body
