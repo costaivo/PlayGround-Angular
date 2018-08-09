@@ -1,12 +1,17 @@
 import { Component, OnInit } from '@angular/core';
+import { ApiService } from './api.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
     selector: 'profile',
-    template: 'name.component.html'
+    templateUrl: 'profile.component.html'
 })
 
 export class ProfileComponent implements OnInit {
-    constructor() { }
+    constructor(private apiService: ApiServic, private route: ActivatedRoute) { }
 
-    ngOnInit() { }
+    ngOnInit() {
+        var id = this.route.snapshot.params.id;
+        this.apiService.getProfile(id)
+    }
 }

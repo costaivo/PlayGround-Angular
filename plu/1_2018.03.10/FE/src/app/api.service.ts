@@ -20,4 +20,7 @@ export class ApiService {
             this.users = res.json()
         });
     }
+    getProfile(id) {
+        return this.http.get(this.apiUrl + 'profile');
+    }
 }

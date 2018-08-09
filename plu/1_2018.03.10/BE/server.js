@@ -7,6 +7,9 @@ var jwt = require('jwt-simple');
 
 var User = require('./models/user.js');
 
+// Use ES6 Promise library
+mongoose.Promise = Promise
+
 var posts = [
     { message: 'hello' },
     { message: 'hi' },
@@ -31,7 +34,16 @@ app.get('/users', async (req, res) => {
         console.error(error)
         res.sendStatus(500)
     }
+})
 
+app.get('/profile/:id', async (req, res) => {
+    try {
+        var user = await User.findById(req.params.id, '-password -__v')
+        res.send(user)
+    } catch (error) {
+        console.error(error)
+        res.sendStatus(500)
+    }
 })
 
 app.post('/register', async (req, res) => {
