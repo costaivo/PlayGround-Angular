@@ -5,7 +5,7 @@ var jwt = require('jwt-simple')
 var express = require('express')
 var router = express.Router()
 
-router.post('/register', async (req, res) => {
+async function register(req, res) {
     var userData = req.body;
     var user = new User(userData);
 
@@ -25,9 +25,8 @@ router.post('/register', async (req, res) => {
             res.sendStatus(201);
         })
     }
-})
-
-router.post('/login', async (req, res) => {
+}
+async function login(req, res) {
     console.log('In login function')
     var loginData = req.body
 
@@ -54,6 +53,10 @@ router.post('/login', async (req, res) => {
         //to send status and response need to use res.status
         return res.status(200).send({ token })
     })
-})
+}
+
+router.post('/register', register)
+
+router.post('/login', login)
 
 module.exports = router
