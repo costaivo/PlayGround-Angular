@@ -1,5 +1,6 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http'
+import { Injectable } from '@angular/core'
+import { environment } from '../../environments/environment'
 
 @Injectable()
 export class ApiService {
@@ -9,7 +10,7 @@ export class ApiService {
 
     constructor(private http: HttpClient) { }
 
-    apiUrl = 'http://localhost:3000/'
+    apiUrl = environment.path
     getMessages(userId) {
         this.http.get<any>(this.apiUrl + 'posts/' + userId).subscribe(res => {
             this.messages = res
