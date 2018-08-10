@@ -33,7 +33,7 @@ app.get('/posts/:id', async (req, res) => {
 
 app.post('/post', auth.checkAuthenticated, (req, res) => {
     var postData = req.body
-    postData.author = '5b6c233280434056f4bdc813'
+    postData.author = req.userId
 
     var post = new Post(postData)
 

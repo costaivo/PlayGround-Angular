@@ -13,6 +13,9 @@ export class AuthService {
     get token() {
         return localStorage.getItem(this.TOKEN_KEY)
     }
+    saveToken(token) {
+        localStorage.setItem(this.TOKEN_KEY, token)
+    }
 
     get isAuthenticated() {
         //This function returns a boolean value. First negation does that.
@@ -28,14 +31,18 @@ export class AuthService {
         return !!localStorage.getItem(this.TOKEN_KEY)
     }
 
+    logout() {
+        localStorage.removeItem(this.TOKEN_KEY)
+    }
     sendUserRegistration(registerData) {
-        this.http.post(this.apiUrl + 'register', registerData).subscribe(res => {
-
+        this.http.post<any>(this.apiUrl + 'register', registerData).subscribe(res => {
+            this.saveToken(res.token)
         });
     }
     loginUser(loginData) {
         this.http.post<any>(this.apiUrl + 'login', loginData).subscribe(res => {
-            localStorage.setItem(this.TOKEN_KEY, res.token)
+            this.saveToken(res.token)
         });
     }
+
 }

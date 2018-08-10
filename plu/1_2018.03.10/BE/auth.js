@@ -5,6 +5,15 @@ var jwt = require('jwt-simple')
 var express = require('express')
 var router = express.Router()
 
+function createSendToken(res, user, statusId = 200) {
+    var payload = { sub: user._id };
+
+    var token = jwt.encode(payload, '123')
+
+    //to send status and response need to use res.status
+    return res.status(statusId).send({ token })
+}
+
 async function register(req, res) {
     var userData = req.body;
     var user = new User(userData);
@@ -12,17 +21,15 @@ async function register(req, res) {
     var existingUser = await User.findOne({ email: userData.email })
 
     if (existingUser !== null) {
-        conosle.log('User with email ' + userData.email + 'already exists in the system')
         res.status(409).send({ message: 'User with email ' + userData.email + 'already exists in the system' })
     }
     else {
-        user.save((err, result) => {
+        user.save((err, newUser) => {
             if (err)
-                console.log(userData.email);
+                return res.status(500).send({ message: 'Error saving user' })
 
-            console.log('User ' + userData.email + 'registered successfully')
             // Send Resource Code 201 since new record was created.
-            res.sendStatus(201);
+            createSendToken(res, newUser, 201)
         })
     }
 }
@@ -45,16 +52,10 @@ async function login(req, res) {
         if (!isMatch)
             return res.status(401).send({ message: ' Password invalid' })
 
-        var payload = { sub: user._id };
-
-        var token = jwt.encode(payload, '123')
-
-        console.log('User Passwords match');
-
-        //to send status and response need to use res.status
-        return res.status(200).send({ token })
+        createSendToken(res, user)
     })
 }
+
 
 function checkAuthenticated(req, res, next) {
     if (!req.header('authorization'))
