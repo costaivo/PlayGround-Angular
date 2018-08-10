@@ -1,28 +1,25 @@
 import { BrowserModule } from '@angular/platform-browser'
 import { NgModule } from '@angular/core'
 import { RouterModule } from '@angular/router'
-import { MatComponents } from './app.imports-material'
+import { MatComponents } from './start'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
-import { AppComponent } from './app.component'
+import { FormsModule } from '@angular/forms'
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http'
+import { AuthInterceptorService } from './core/authInterceptor.service'
+
+
+import { AppComponent, APP_ROUTES } from './start'
 import { ApiService, AuthService } from './services'
 import { MessagesComponent } from './messages.component'
+import { PostComponent } from './post/post.component'
 
-import { RegisterComponent } from './register.component'
-import { FormsModule } from '@angular/forms'
-import { LoginComponent } from './login.component'
-import { UsersComponent } from './users.components'
-import { ProfileComponent } from './profile.component'
-import { PostComponent } from './post.component'
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http'
-import { AuthInterceptorService } from './authInterceptor.service'
+import { RegisterComponent, LoginComponent } from './session'
+import { UsersComponent, ProfileComponent } from './user'
 
-const routes = [
-  { path: '', component: PostComponent },
-  { path: 'register', component: RegisterComponent },
-  { path: 'login', component: LoginComponent },
-  { path: 'users', component: UsersComponent },
-  { path: 'profile/:id', component: ProfileComponent }
-];
+
+
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,7 +36,7 @@ const routes = [
     HttpClientModule,
     ...MatComponents,
     BrowserAnimationsModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(APP_ROUTES)
   ],
   providers: [ApiService, AuthService, {
     provide: HTTP_INTERCEPTORS,
