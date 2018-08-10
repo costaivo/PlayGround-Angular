@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ApiService } from './api.service';
-import { ActivatedRoute } from '../../node_modules/@angular/router';
+import { ApiService } from './services';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
     selector: 'messages',
