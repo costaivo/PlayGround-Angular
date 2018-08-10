@@ -3,7 +3,7 @@ var cors = require('cors')
 var bodyParser = require('body-parser')
 var app = express()
 var mongoose = require('mongoose')
-
+var jwt = require('jwt-simple')
 
 
 var User = require('./models/user.js')
@@ -20,6 +20,7 @@ app.use(cors());
 app.use(bodyParser.json());
 
 
+
 app.get('/posts/:id', async (req, res) => {
     try {
         var posts = await Post.find({ author: req.params.id }, '-__v')
@@ -30,7 +31,7 @@ app.get('/posts/:id', async (req, res) => {
     }
 })
 
-app.post('/post', (req, res) => {
+app.post('/post', auth.checkAuthenticated, (req, res) => {
     var postData = req.body
     postData.author = '5b6c233280434056f4bdc813'
 
@@ -74,7 +75,7 @@ mongoose.connect(dbConnectionString, {}, (err) => {
     if (!err) {
         console.log('connected to mongodb');
 
-        app.use('/auth', auth)
+        app.use('/auth', auth.router)
         app.listen(3000);
         console.log('Server started');
     }

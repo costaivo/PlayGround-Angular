@@ -56,8 +56,27 @@ async function login(req, res) {
     })
 }
 
-router.post('/register', register)
+function checkAuthenticated(req, res, next) {
+    if (!req.header('authorization'))
+        return res.status(401).send({ message: 'Unauthorized. Missing Auth Header' })
 
+    var token = req.header('authorization').split(' ')[1]
+
+    var payload = jwt.decode(token, '123')
+
+    if (!payload)
+        return res.status(401).send({ message: 'Unauthorized.Auth Header Invalid' })
+
+    req.userId = payload.sub
+
+    // call the next middleware
+    next()
+}
+
+router.post('/register', register)
 router.post('/login', login)
 
-module.exports = router
+module.exports = {
+    router,
+    checkAuthenticated
+}
