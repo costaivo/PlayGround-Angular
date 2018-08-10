@@ -14,6 +14,20 @@ export class AuthService {
         return localStorage.getItem(this.TOKEN_KEY)
     }
 
+    get isAuthenticated() {
+        //This function returns a boolean value. First negation does that.
+        //Second negation gives the value if user is authenticated
+        //The one line statement executes the same codeflow as the one shown below. 
+        /*
+        var token = localStorage.getItem(this.TOKEN_KEY)
+         if(token)
+            return true
+         else 
+            return false
+        */
+        return !!localStorage.getItem(this.TOKEN_KEY)
+    }
+
     sendUserRegistration(registerData) {
         this.http.post(this.apiUrl + 'register', registerData).subscribe(res => {
 
