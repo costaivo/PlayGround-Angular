@@ -8,6 +8,11 @@ export class AuthService {
 
     apiUrl = 'http://localhost:3000/auth/';
 
+    TOKEN_KEY = 'token'
+
+    get token() {
+        return localStorage.getItem(this.TOKEN_KEY)
+    }
 
     sendUserRegistration(registerData) {
         this.http.post(this.apiUrl + 'register', registerData).subscribe(res => {
@@ -16,7 +21,7 @@ export class AuthService {
     }
     loginUser(loginData) {
         this.http.post<any>(this.apiUrl + 'login', loginData).subscribe(res => {
-            localStorage.setItem('token', res.token)
+            localStorage.setItem(this.TOKEN_KEY, res.token)
         });
     }
 }
