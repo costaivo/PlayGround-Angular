@@ -1,15 +1,1 @@
-<div class="jumbotron text-center">
-  <h1>Directives Practice</h1>
-  <p>Resize this responsive page to see the effect!</p>
-</div>
-<hr>
-<button type="button" class="btn btn-primary" (click)="onClick()">
-  Display Details
-</button>
-<p *ngIf='showDetails'>Secret password tuna</p>
-<div *ngIf='logs.length>0'>
-  <h1>Logs</h1>
-  <div *ngFor="let log of logs">
-    {{log}}
-  </div>
-</div>
+<app-header></app-header>
