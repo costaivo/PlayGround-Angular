@@ -7,13 +7,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
 
-  showDetails: boolean = false;
-  counter = 0;
-  logs = []
-  onClick() {
-    console.log('i m clicked')
-    this.showDetails = !this.showDetails;
-    this.counter++;
-    this.logs.push('log counter ' + this.counter);
+  loadedFeature: string = 'recipe';
+
+
+  onNavigate(feature: string) {
+    this.loadedFeature = feature;
   }
 }
