@@ -9,7 +9,9 @@ export class AppComponent {
 
   loadedFeature: string = 'recipe';
 
+  boldTxt = 'bold'
 
+  message = 'this text should be ' + this.boldTxt.toUpperCase().bold() ;
   onNavigate(feature: string) {
     this.loadedFeature = feature;
   }
