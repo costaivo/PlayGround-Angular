@@ -1,12 +1,12 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { WelcomeComponent } from './home/welcome.component';
-import { RouterModule } from '@angular/router';
 import { ProductModule } from './products/product.module';
+import { AppRoutingModule } from './app-routing.module';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -15,14 +15,13 @@ import { ProductModule } from './products/product.module';
   ],
   imports: [
     BrowserModule,
-    FormsModule,
     HttpClientModule,
+    ProductModule,
     RouterModule.forRoot([
       { path: 'welcome', component: WelcomeComponent },
       { path: '', component: WelcomeComponent, pathMatch: 'full' },
       { path: '**', component: WelcomeComponent, pathMatch: 'full' },
-    ]),
-    ProductModule
+    ])
   ],
   bootstrap: [AppComponent]
 })
