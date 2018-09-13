@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
 @Injectable({
   providedIn: 'root'
 })
-export class ProductDetailGaurdGuard implements CanActivate {
+export class ProductDetailGuard implements CanActivate {
 
   constructor(private router: Router) {
 
