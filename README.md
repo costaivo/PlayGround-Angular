@@ -1,6 +1,24 @@
-# PlayGround-Angular
-Main purpose of this repository is to try out the demo's provided in the courses as i learn. 
+# PlayGround ReactJS
 
-## Courses i learned 
+<<<<<<< HEAD
+A copy of the code examples i used for Learning Angular
 
-* Building an Angular Application with Node and Token Authentication. 
+## Notes
+
+XHR requests.
+XML HTTP Requests
+
+### Single Page Applications
+
+SPA's with plain Javascript are hard to build
+
+Features of a SPA Application
+
+- HTTP Communication with XHR
+- Document Object Model (DOM) Manipulation
+- State and Routing
+=======
+Sample Projects worked on while learning AngularJS & Angular
+=======
+My Playground to learn ReactJS Concepts
+>>>>>>> 15ab478 (Inital commit for ReactJS)
