@@ -1,18 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <title>ngClassifieds</title>
-</head>
+    <link
+      rel="stylesheet"
+      href="node_modules/angular-material/angular-material.css"
+    />
+    <link
+      href="node_modules/mdi/css/materialdesignicons.min.css"
+      media="all"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
 
-<body ng-app="ngClassifieds" ng-init="message='First app'" ng-controller="classifiedCtrl">
-    <h1>{{message}}</h1>
-    <h1>{{name}}</h1>
-    <input type="text" ng-model="myname">
-    {{myname}}
+  <body
+    ng-app="ngClassifieds"
+    ng-init="message='First app'"
+    ng-controller="classifiedCtrl"
+  >
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <p><strong>ngClassifieds</strong></p>
+
+        <md-button>
+          <md-icon class="mdi mdi-plus-circle"></md-icon>
+          New Classified
+        </md-button>
+      </div></md-toolbar
+    >
+    <md-content class="md-padding" layout="row" layout-wrap>
+      <md-card flex="20" ng-repeat="classified in classifieds">
+        <img ng-src="{{classified.image}}" />
+        <md-card-content>
+          <div class="classified-info">
+            <h2 class="md-title">{{ classified.title }}</h2>
+            <h2>{{ classified.posted | date: 'longDate' }}</h2>
+            <h3>{{ classified.price | currency }}</h3>
+            <p>{{ classified.description }}</p>
+          </div>
+        </md-card-content>
+      </md-card>
+    </md-content>
+
     <script src="node_modules/angular/angular.js"></script>
-    <script src="app.js"></script>
+    <script src="node_modules/angular-material/angular-material.js"></script>
+    <script src="node_modules/angular-animate/angular-animate.js"></script>
+    <script src="node_modules/angular-aria/angular-aria.js"></script>
+    <script src="scripts/app.js"></script>
     <script src="components/classifieds.ctr.js"></script>
-</body>
-
+  </body>
 </html>

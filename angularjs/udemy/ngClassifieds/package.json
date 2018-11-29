@@ -12,8 +12,10 @@
   "author": "Costa Ivo",
   "license": "ISC",
   "dependencies": {
-    "angular": "1.7.5",
-    "angular-material": "1.1.10",
-    "mdi": "2.2.43"
+    "angular": "1.5.0",
+    "angular-animate": "1.5.0",
+    "angular-aria": "1.5.0",
+    "angular-material": "0.11.4",
+    "mdi": "1.4.57"
   }
 }
