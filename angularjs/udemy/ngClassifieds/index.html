@@ -5,10 +5,14 @@
     <title>ngClassifieds</title>
 </head>
 
-<body ng-app="ngClassifieds" ng-init="message='First app'">
+<body ng-app="ngClassifieds" ng-init="message='First app'" ng-controller="classifiedCtrl">
     <h1>{{message}}</h1>
+    <h1>{{name}}</h1>
+    <input type="text" ng-model="myname">
+    {{myname}}
     <script src="node_modules/angular/angular.js"></script>
     <script src="app.js"></script>
+    <script src="components/classifieds.ctr.js"></script>
 </body>
 
 </html>
