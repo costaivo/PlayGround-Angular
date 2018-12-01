@@ -68,21 +68,27 @@
               md-autofocus
             />
           </md-input-container>
-          <md-button class="md-primary" ng-click="saveClassified(classified)">
+          <md-button
+            class="md-primary"
+            ng-if="!editing"
+            ng-click="saveClassified(classified)"
+          >
             Save
           </md-button>
-          <md-button class="md-primary">Save Edit</md-button>
+          <md-button
+            class="md-primary"
+            ng-if="editing"
+            ng-click="saveEdit(classified)"
+            >Save Edit</md-button
+          >
           <md-button class="md-warn" ng-click="closeSidebar()"
             >Cancel</md-button
           >
-          <pre>
-            {{ classified | json }}
-          </pre>
         </form>
       </md-content>
     </md-sidenav>
     <md-content class="md-padding" layout="row" layout-wrap>
-      <md-card flex="20" ng-repeat="classified in classifieds">
+      <md-card flex="30" ng-repeat="classified in classifieds">
         <img ng-src="{{classified.image}}" />
         <md-card-content>
           <div class="classified-info" ng-show="!showContact">
@@ -123,8 +129,16 @@
           <div class="classified-admin" ng-if="showAdmin">
             <h3>Admin</h3>
             <div layout="row">
-              <md-button class="md-primary">Edit</md-button>
-              <md-button class="md-warn">Delete</md-button>
+              <md-button
+                class="md-primary"
+                ng-click="editClassified(classified)"
+                >Edit
+              </md-button>
+              <md-button
+                class="md-warn"
+                ng-click="deleteClassified($event,classified)"
+                >Delete</md-button
+              >
             </div>
           </div>
         </md-card-content>
