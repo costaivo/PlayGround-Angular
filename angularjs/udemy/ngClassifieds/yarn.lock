@@ -17,10 +17,10 @@ angular-material@0.11.4:
   resolved "https://registry.yarnpkg.com/angular-material/-/angular-material-0.11.4.tgz#67ea772b130ace8c80b02b81d74b80351b91976d"
   integrity sha1-Z+p3KxMKzoyAsCuB10uANRuRl20=
 
-angular@1.5.0:
-  version "1.5.0"
-  resolved "https://registry.yarnpkg.com/angular/-/angular-1.5.0.tgz#d96ee97ab6df6cfd0915accbee484d098adb74ec"
-  integrity sha1-2W7perbfbP0JFazL7khNCYrbdOw=
+angular@1.7.9:
+  version "1.7.9"
+  resolved "https://registry.yarnpkg.com/angular/-/angular-1.7.9.tgz#e52616e8701c17724c3c238cfe4f9446fd570bc4"
+  integrity sha512-5se7ZpcOtu0MBFlzGv5dsM1quQDoDeUTwZrWjGtTNA7O88cD8TEk5IEKCTDa3uECV9XnvKREVUr7du1ACiWGFQ==
 
 mdi@1.4.57:
   version "1.4.57"

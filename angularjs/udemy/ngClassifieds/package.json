@@ -12,7 +12,7 @@
   "author": "Costa Ivo",
   "license": "ISC",
   "dependencies": {
-    "angular": "1.5.0",
+    "angular": "1.7.9",
     "angular-animate": "1.5.0",
     "angular-aria": "1.5.0",
     "angular-material": "0.11.4",
