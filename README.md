@@ -6,6 +6,6 @@ My Playground to learn Angular Concepts
 
 ### [Angular: Getting Started](https://app.pluralsight.com/library/courses/angular-2-getting-started-update)
   Angular basics and fundamentals. 
-  Code Dir: [angular-getting-started]()
+  Code Dir: [angular-getting-started](./angular-getting-started/)
 
 
