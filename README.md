@@ -2,11 +2,9 @@
 
 My Playground to learn Angular Concepts
 
-## Contents
+## Lessons
 
-- [Template Forms](https://github.com/costaivo/PlayGround-Angular/tree/master/template-forms) 
-
-
-### Single Page Applications
+### [Angular: Getting Started](https://app.pluralsight.com/library/courses/angular-2-getting-started-update)
+  Angular basics and fundamentals. See
 
 
