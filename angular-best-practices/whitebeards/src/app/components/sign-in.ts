@@ -97,11 +97,11 @@ export class SignInComponent {
 })
 
 export class RegisterComponent {
-  registerForm: FormGroup;
-  firstName: FormControl;
-  lastName: FormControl;
-  email: FormControl;
-  password: FormControl;
+  registerForm: FormGroup | undefined;
+  firstName: FormControl | undefined;
+  lastName: FormControl | undefined;
+  email: FormControl | undefined;
+  password: FormControl | undefined;
   saving:boolean=false;
 
   constructor(private router:Router, private dataRepository:DataRepositoryService) { }
@@ -120,7 +120,7 @@ export class RegisterComponent {
     });
   }
 
-  registerUser(user) {
+  registerUser(user:any) {
     this.saving=true;
     this.dataRepository.saveUser(user)
       .subscribe(

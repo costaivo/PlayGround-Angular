@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
 import {  Observable, Subject } from 'rxjs';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/observable/of';
-import 'rxjs/add/observable/of';
+
 @Injectable()
 export class DataRepositoryService {
   currentUser:any;
@@ -26,7 +24,7 @@ export class DataRepositoryService {
     user.classes = user.classes || [];
     this.currentUser = user;
 
-   return Observable.of().delay(1000);
+   return this.currentUser;
    // return new Observable.of();
   }
 
@@ -39,7 +37,7 @@ export class DataRepositoryService {
 
     this.currentUser.classes.push(classId);
 
-    return Observable.empty().delay(1000);
+    return this.currentUser;
     //return new EmptyObservable().delay(1000);
   }
 
@@ -47,12 +45,12 @@ export class DataRepositoryService {
     if (!this.currentUser)
       return Observable.throw('User not signed in');
 
-    if (!this.currentUser.classes.includes(classId))
+    if (!this.currentUser?.classes?.includes(classId))
       return Observable.throw('Not enrolled');
 
-    this.currentUser.classes = this.currentUser.classes.filter(c => c.classId !== classId);
+    this.currentUser.classes = this.currentUser?.classes?.filter(c=> c.classId !== classId);
 
-   return Observable.empty().delay(1000);
+   return this.currentUser;
   //  return new EmptyObservable().delay(1000);
   }
 
@@ -60,7 +58,7 @@ export class DataRepositoryService {
     //Never, ever check credentials in client-side code.
     //This code is only here to supply a fake endpoint for signing in.
     if (credentials.email !== 'me@whitebeards.edu' || credentials.password !== 'super-secret')
-      return Observable.throw('Invalid login');
+      return Observable.throw('Invalid login',undefined);
 
     this.currentUser = {
       userId: 'e61aebed-dbc5-437a-b514-02b8380d8efc',
@@ -70,7 +68,7 @@ export class DataRepositoryService {
       classes: ['24ab7b14-f935-44c1-b91b-8598123ea54a']
     };
 
-    return Observable.empty();
+    return this.currentUser;
    // return new EmptyObservable();
   }
 }
