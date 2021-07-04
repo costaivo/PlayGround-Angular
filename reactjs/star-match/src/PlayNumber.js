@@ -1,7 +1,6 @@
 const PlayNumber = (props) => {
   return (
-    <button className="number" 
-    onClick={() => console.log('Num', props.number)}>
+    <button className="number" onClick={() => console.log('Num', props.number)}>
       {props.number}
     </button>
   );
