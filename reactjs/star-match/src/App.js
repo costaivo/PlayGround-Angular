@@ -1,4 +1,6 @@
 import './App.css';
+import logo from './logo.svg';
+
 import React, { useState } from 'react';
 
 export const Header = (props) => {
@@ -48,7 +50,9 @@ const utils = {
 const StarsDisplay = (props) => (
   <div>
     {utils.range(1, props.count).map((starId) => (
-      <div key={starId} className="star" />
+      // <div key={starId} className="star" />
+
+      <img key={starId} src={logo} width="50px" height="50px"/> 
     ))}
   </div>
 );
