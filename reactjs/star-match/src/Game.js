@@ -5,22 +5,9 @@ import PlayNumber from './PlayNumber'
 import utils from './utils'
 import CartoonDisplay from './CartoonDisplay'
 import React, { useState, useEffect } from 'react'
+import PlayAgain from './PlayAgain'
 
 
-
-
-
-const PlayAgain = props => (
-  <div className="game-done">
-    <div
-      className="message"
-      style={{ color: props.gameStatus === 'lost' ? 'red' : 'green' }}
-    >
-      {props.gameStatus === 'lost' ? 'Game Over' : 'Nice. You Won!!'}
-    </div>
-    <button onClick={props.onClick}>Play Again</button>
-  </div>
-)
 
 // Custom Hook 
 const useGameState = () => {
