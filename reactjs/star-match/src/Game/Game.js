@@ -6,15 +6,17 @@ import CartoonDisplay from './CartoonDisplay'
 import React, { useState, useEffect } from 'react'
 import PlayAgain from './PlayAgain'
 
-
+const MAX_NUMS = 20
+/* Game Time in seconds */
+const GAME_TIME =20 
 
 // Custom Hook 
 const useGameState = () => {
 
-  const [stars, setStars] = useState(utils.random(1, 9));
-  const [availableNums, setAvailableNums] = useState(utils.range(1, 9));
+  const [stars, setStars] = useState(utils.random(1, MAX_NUMS));
+  const [availableNums, setAvailableNums] = useState(utils.range(1, MAX_NUMS));
   const [candidateNums, setCandidateNums] = useState([]);
-  const [secondsLeft, setSecondsLeft] = useState(15);
+  const [secondsLeft, setSecondsLeft] = useState(GAME_TIME);
 
   useEffect(() => {
     if (secondsLeft > 0 && availableNums.length > 0) {
@@ -33,7 +35,7 @@ const useGameState = () => {
       const newAvailableNums = availableNums.filter(
         n => !newCandidateNums.includes(n)
       );
-      setStars(utils.randomSumIn(newAvailableNums, 9));
+      setStars(utils.randomSumIn(newAvailableNums, MAX_NUMS));
       setAvailableNums(newAvailableNums);
       setCandidateNums([]);
     }
@@ -88,7 +90,7 @@ const Game = (props) => {
 
         </div>
         <div className="right">
-          {utils.range(1, 9).map((number) => (
+          {utils.range(1, MAX_NUMS).map((number) => (
             <PlayNumber
               key={number}
               number={number}
