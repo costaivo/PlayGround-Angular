@@ -86,7 +86,7 @@ const Footer = (props) => {
   >
     Time Remaining: {props.timeLeft}</div>;
 };
-const StarMatch = () => {
+const Game = (props) => {
   const [stars, setStars] = useState(utils.random(1, 9));
   const [availableNums, setAvailableNums] = useState(utils.range(1, 9));
   const [candidateNums, setCandidateNums] = useState([]);
@@ -124,7 +124,7 @@ const StarMatch = () => {
 
 
   const onNumberClick = (number, currentStatus) => {
-    if (gameStatus !== 'active' || currentStatus === 'used' ) {
+    if (gameStatus !== 'active' || currentStatus === 'used') {
       return;
     }
     //candidate Nums
@@ -150,7 +150,7 @@ const StarMatch = () => {
       <div className="body">
         <div className="left">
           {gameStatus !== 'active' ?
-            (<PlayAgain onClick={resetGame} gameStatus={gameStatus} />)
+            (<PlayAgain onClick={props.startNewGame} gameStatus={gameStatus} />)
             :
             (<StarsDisplay count={stars} />)}
 
@@ -179,6 +179,11 @@ const colors = {
   candidate: 'deepskyblue',
 };
 
+const StarMatch = () => {
+  const [gameId,setGameId]=useState(1);
+
+  return <Game key={gameId} startNewGame={()=>setGameId(gameId+1)}/>;
+}
 function App() {
   return (
     <div>
