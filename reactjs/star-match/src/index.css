@@ -34,7 +34,6 @@
 .star:after {
     content: "\2605";
     font-size: 45px;
-    color: rgb(38, 37, 119)
 }
 
 .number {
