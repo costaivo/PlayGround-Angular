@@ -1,10 +1,10 @@
 import './App.css'
-import StarMatch from './CartoonMatch'
+import CartoonMatch from './Game/CartoonMatch'
 
 function App() {
   return (
     <div>
-      <StarMatch />
+      <CartoonMatch />
     </div>
   );
 }
