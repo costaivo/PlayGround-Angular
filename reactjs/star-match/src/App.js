@@ -1,51 +1,14 @@
 import './App.css';
+import Footer from './Footer'
+import Header from './Header'
 import logo from './logo.svg';
+import utils from './utils'
 
 import React, { useState, useEffect } from 'react';
 
-export const Header = (props) => {
-  return (
-    <div className="help">
-      Pick 1 or more numbers that sum to the number of stars
-    </div>
-  );
-};
 
-// Math science
-const utils = {
-  // Sum an array
-  sum: (arr) => arr.reduce((acc, curr) => acc + curr, 0),
 
-  // create an array of numbers between min and max (edges included)
-  range: (min, max) =>
-    Array.from(
-      {
-        length: max - min + 1,
-      },
-      (_, i) => min + i
-    ),
 
-  // pick a random number between min and max (edges included)
-  random: (min, max) => min + Math.floor(Math.random() * (max - min + 1)),
-
-  // Given an array of numbers and a max... Pick a random sum (< max) from the set
-  // of all available sums in arr
-  randomSumIn: (arr, max) => {
-    const sets = [[]];
-    const sums = [];
-    for (let i = 0; i < arr.length; i++) {
-      for (let j = 0, len = sets.length; j < len; j++) {
-        const candidateSet = sets[j].concat(arr[i]);
-        const candidateSum = utils.sum(candidateSet);
-        if (candidateSum <= max) {
-          sets.push(candidateSet);
-          sums.push(candidateSum);
-        }
-      }
-    }
-    return sums[utils.random(0, sums.length - 1)];
-  },
-};
 
 const StarsDisplay = (props) => (
   <div>
@@ -79,23 +42,14 @@ const PlayAgain = props => (
     <button onClick={props.onClick}>Play Again</button>
   </div>
 )
-const Footer = (props) => {
-  return <div
-    className="timer"
 
-  >
-    Time Remaining: {props.timeLeft}</div>;
-};
-const Game = (props) => {
+// Custom Hook 
+const useGameState = () => {
+
   const [stars, setStars] = useState(utils.random(1, 9));
   const [availableNums, setAvailableNums] = useState(utils.range(1, 9));
   const [candidateNums, setCandidateNums] = useState([]);
-  const [secondsLeft, setSecondsLeft] = useState(10);
-  const candidatesAreWrong = utils.sum(candidateNums) > stars;
-
-
-  const gameStatus = availableNums.length === 0 ? 'won'
-    : secondsLeft === 0 ? 'lost' : 'active';
+  const [secondsLeft, setSecondsLeft] = useState(15);
 
   useEffect(() => {
     if (secondsLeft > 0 && availableNums.length > 0) {
@@ -106,11 +60,34 @@ const Game = (props) => {
     }
   });
 
-  const resetGame = () => {
-    setStars(utils.random(1, 9));
-    setAvailableNums(utils.range(1, 9));
-    setCandidateNums([]);
+  const setGameState = (newCandidateNums) => {
+    if (utils.sum(newCandidateNums) !== stars) {
+      setCandidateNums(newCandidateNums);
+    }
+    else {
+      const newAvailableNums = availableNums.filter(
+        n => !newCandidateNums.includes(n)
+      );
+      setStars(utils.randomSumIn(newAvailableNums, 9));
+      setAvailableNums(newAvailableNums);
+      setCandidateNums([]);
+    }
   };
+  return { stars, availableNums, candidateNums, secondsLeft, setGameState };
+}
+
+const Game = (props) => {
+  const
+    { stars,
+      availableNums,
+      secondsLeft,
+      candidateNums,
+      setGameState
+    } = useGameState();
+
+  const candidatesAreWrong = utils.sum(candidateNums) > stars;
+  const gameStatus = availableNums.length === 0 ? 'won'
+    : secondsLeft === 0 ? 'lost' : 'active';
 
   const numberStatus = (number) => {
     if (!availableNums.includes(number)) {
@@ -132,17 +109,7 @@ const Game = (props) => {
       currentStatus === 'available'
         ? candidateNums.concat(number)
         : candidateNums.filter(cn => cn !== number);
-    if (utils.sum(newCandidateNums) !== stars) {
-      setCandidateNums(newCandidateNums);
-    }
-    else {
-      const newAvailableNums = availableNums.filter(
-        n => !newCandidateNums.includes(n)
-      );
-      setStars(utils.randomSumIn(newAvailableNums, 9));
-      setAvailableNums(newAvailableNums);
-      setCandidateNums([]);
-    }
+    setGameState(newCandidateNums);
   };
   return (
     <div className="game">
@@ -180,9 +147,9 @@ const colors = {
 };
 
 const StarMatch = () => {
-  const [gameId,setGameId]=useState(1);
+  const [gameId, setGameId] = useState(1);
 
-  return <Game key={gameId} startNewGame={()=>setGameId(gameId+1)}/>;
+  return <Game key={gameId} startNewGame={() => setGameId(gameId + 1)} />;
 }
 function App() {
   return (
