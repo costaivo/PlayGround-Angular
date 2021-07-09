@@ -6,9 +6,9 @@ import CartoonDisplay from './CartoonDisplay'
 import React, { useState, useEffect } from 'react'
 import PlayAgain from './PlayAgain'
 
-const MAX_NUMS = 20
+const MAX_NUMS = 9
 /* Game Time in seconds */
-const GAME_TIME =20 
+const GAME_TIME =10 
 
 // Custom Hook 
 const useGameState = () => {
